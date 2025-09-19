@@ -26,6 +26,6 @@ elif [[ $1 == "build" ]]; then
 elif [[ $1 == "iex" ]]; then
     docker attach $2
 else
-    echo "Uso: $0 {start|stop|iex nombre_de_contenedor}"
+    echo "Uso: $0 {start|stop|build|iex nombre_de_contenedor}"
     exit 1
 fi
