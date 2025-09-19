@@ -1,4 +1,4 @@
-defmodule LibremarketSupervisor do
+defmodule Libremarket.Supervisor do
   use Supervisor
 
   @doc """
