@@ -7,11 +7,12 @@ services:
     working_dir: /app
     network_mode: "host"
     environment:
+      COOKIE: ${COOKIE}
       SERVER_TO_RUN: Compras.Server
       MIX_HOME: /app/mix_home
       HEX_HOME: /app/hex_home
     command: >
-      elixir --sname compras --cookie ${SECRET} -S mix run --no-halt --no-compile
+      elixir --sname compras --cookie ${COOKIE} -S mix run --no-halt --no-compile
     user: "${DOCKER_UID}:${DOCKER_GID}"
 
   infracciones:
@@ -22,11 +23,12 @@ services:
     working_dir: /app
     network_mode: "host"
     environment:
+      COOKIE: ${COOKIE}
       SERVER_TO_RUN: Infracciones.Server
       MIX_HOME: /app/mix_home
       HEX_HOME: /app/hex_home
     command: >
-      elixir --sname infracciones --cookie ${SECRET} -S mix run --no-halt --no-compile
+      elixir --sname infracciones --cookie ${COOKIE} -S mix run --no-halt --no-compile
     user: "${DOCKER_UID}:${DOCKER_GID}"
 
   ventas:
@@ -37,11 +39,12 @@ services:
     working_dir: /app
     network_mode: "host"
     environment:
+      COOKIE: ${COOKIE}
       SERVER_TO_RUN: Ventas.Server
       MIX_HOME: /app/mix_home
       HEX_HOME: /app/hex_home
     command: >
-      elixir --sname ventas --cookie ${SECRET} -S mix run --no-halt --no-compile
+      elixir --sname ventas --cookie ${COOKIE} -S mix run --no-halt --no-compile
     user: "${DOCKER_UID}:${DOCKER_GID}"
 
   envios:
@@ -52,11 +55,12 @@ services:
     working_dir: /app
     network_mode: "host"
     environment:
+      COOKIE: ${COOKIE}
       SERVER_TO_RUN: Envios.Server
       MIX_HOME: /app/mix_home
       HEX_HOME: /app/hex_home
     command: >
-      elixir --sname envios --cookie ${SECRET} -S mix run --no-halt --no-compile
+      elixir --sname envios --cookie ${COOKIE} -S mix run --no-halt --no-compile
     user: "${DOCKER_UID}:${DOCKER_GID}"
 
   pagos:
@@ -67,10 +71,11 @@ services:
     working_dir: /app
     network_mode: "host"
     environment:
+      COOKIE: ${COOKIE}
       SERVER_TO_RUN: Pagos.Server
       MIX_HOME: /app/mix_home
       HEX_HOME: /app/hex_home
     command: >
-      elixir --sname pagos --cookie ${SECRET} -S mix run --no-halt --no-compile
+      elixir --sname pagos --cookie ${COOKIE} -S mix run --no-halt --no-compile
     user: "${DOCKER_UID}:${DOCKER_GID}"
 

@@ -2,14 +2,14 @@
 
 start() {
     # Levantar los contenedores en segundo plano
-    export SECRET=secret
+    export COOKIE=secret
     export DOCKER_UID=$UID
     export DOCKER_GID=$GID
     docker compose up -d "$@"
 }
 
 stop() {
-    export SECRET=secret
+    export COOKIE=secret
     export DOCKER_UID=$UID
     export DOCKER_GID=$GID
     docker compose down

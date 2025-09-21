@@ -45,7 +45,7 @@ defmodule Libremarket.Supervisor do
           if_addr: "0.0.0.0",
           multicast_addr: "127.0.0.1",
           broadcast_only: true,
-          secret: "secret"
+          secret: System.get_env("COOKIE")
         ]
       ]
     ]
