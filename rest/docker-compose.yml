@@ -1,0 +1,97 @@
+services:
+  rest:
+    image: elixir:alpine
+    container_name: rest
+    volumes:
+      - ./:/app
+    working_dir: /app
+    network_mode: "host"
+    environment:
+      COOKIE: ${COOKIE}
+      SERVER_TO_RUN: Libremarket.RestService
+      MIX_HOME: /app/mix_home
+      HEX_HOME: /app/hex_home
+    command: >
+      elixir --sname rest --cookie ${COOKIE} -S mix run --no-halt --no-compile
+    user: "${DOCKER_UID}:${DOCKER_GID}"
+
+  compras:
+    image: elixir:alpine
+    container_name: compras
+    volumes:
+      - ./:/app
+    working_dir: /app
+    network_mode: "host"
+    environment:
+      COOKIE: ${COOKIE}
+      SERVER_TO_RUN: Compras.Server
+      MIX_HOME: /app/mix_home
+      HEX_HOME: /app/hex_home
+    command: >
+      elixir --sname compras --cookie ${COOKIE} -S mix run --no-halt --no-compile
+    user: "${DOCKER_UID}:${DOCKER_GID}"
+
+  infracciones:
+    image: elixir:alpine
+    container_name: infracciones
+    volumes:
+      - ./:/app
+    working_dir: /app
+    network_mode: "host"
+    environment:
+      COOKIE: ${COOKIE}
+      SERVER_TO_RUN: Infracciones.Server
+      MIX_HOME: /app/mix_home
+      HEX_HOME: /app/hex_home
+    command: >
+      elixir --sname infracciones --cookie ${COOKIE} -S mix run --no-halt --no-compile
+    user: "${DOCKER_UID}:${DOCKER_GID}"
+
+  ventas:
+    image: elixir:alpine
+    container_name: ventas
+    volumes:
+      - ./:/app
+    working_dir: /app
+    network_mode: "host"
+    environment:
+      COOKIE: ${COOKIE}
+      SERVER_TO_RUN: Ventas.Server
+      MIX_HOME: /app/mix_home
+      HEX_HOME: /app/hex_home
+    command: >
+      elixir --sname ventas --cookie ${COOKIE} -S mix run --no-halt --no-compile
+    user: "${DOCKER_UID}:${DOCKER_GID}"
+
+  envios:
+    image: elixir:alpine
+    container_name: envios
+    volumes:
+      - ./:/app
+    working_dir: /app
+    network_mode: "host"
+    environment:
+      COOKIE: ${COOKIE}
+      SERVER_TO_RUN: Envios.Server
+      MIX_HOME: /app/mix_home
+      HEX_HOME: /app/hex_home
+    command: >
+      elixir --sname envios --cookie ${COOKIE} -S mix run --no-halt --no-compile
+    user: "${DOCKER_UID}:${DOCKER_GID}"
+
+  pagos:
+    image: elixir:alpine
+    container_name: pagos
+    volumes:
+      - ./:/app
+    working_dir: /app
+    network_mode: "host"
+    environment:
+      COOKIE: ${COOKIE}
+      SERVER_TO_RUN: Pagos.Server
+      MIX_HOME: /app/mix_home
+      HEX_HOME: /app/hex_home
+    command: >
+      elixir --sname pagos --cookie ${COOKIE} -S mix run --no-halt --no-compile
+    user: "${DOCKER_UID}:${DOCKER_GID}"
+
