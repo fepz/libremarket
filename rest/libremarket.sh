@@ -24,7 +24,10 @@ elif [[ $1 == "stop" ]]; then
 elif [[ $1 == "build" ]]; then
     docker run -it --rm -v "$(pwd)":/app -w /app -u $(id -u):$(id -g) -e MIX_HOME=/app/mix_home -e HEX_HOME=/app/hex_home --network host elixir:alpine mix compile
 elif [[ $1 == "iex" ]]; then
-    docker attach $2
+    shift
+    SNAME="${1:-n1}"
+    COOKIE="${2:-secret}"
+    docker run -it --rm -v "$(pwd)":/app -w /app -u $(id -u):$(id -g) --network host -e COOKIE=$COOKIE -e MIX_HOME=/app/mix_home -e HEX_HOME=/app/hex_home elixir:alpine iex --sname $SNAME --cookie $COOKIE -S mix 
 else
     echo "Uso: $0 {start|stop|build|iex nombre_de_contenedor}"
     exit 1
