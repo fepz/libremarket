@@ -9,26 +9,6 @@ defmodule LibremarketSupervisor do
   end
 
   defp load_config() do
-    case File.read("config.json") do
-      {:ok, contents} -> parse_json_config(contents)
-      {:error, _} -> load_default_config()
-    end
-  end
-
-  defp parse_json_config(contents) do
-    case Jason.decode(contents) do
-      {:ok, json} -> parse_servers(json["servers"])
-      {:error, _} -> load_default_config()
-    end
-  end
-
-  defp parse_servers(servers) when is_list(servers) do
-    Enum.map(servers, fn server ->
-      {String.to_existing_atom("Elixir." <> server["type"]), %{}}
-    end)
-  end
-
-  defp load_default_config() do
     [
       {Compras.Server, %{}},
       {Envios.Server, %{}},
