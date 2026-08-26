@@ -34,21 +34,21 @@ defmodule Compras do
   end
 
   defp reservar_producto(%Compra{} = compra) do
-    reserva = Ventas.Server.reservar_producto(compra.producto.id)
-    compra = %{compra | producto: %{compra.producto | reservado: reserva}}
-    {reserva, compra}
+    reservado? = Ventas.Server.reservar_producto(compra.producto.id)
+    compra = %{compra | producto: %{compra.producto | reservado: reservado?}}
+    {reservado?, compra}
   end
 
   defp detectar_infraccion(%Compra{} = compra) do
-    infraccion = Infracciones.Server.detectar_infraccion(compra.producto.id)
-    compra = %{compra | infraccion: infraccion}
-    {infraccion, compra}
+    infraccion? = Infracciones.Server.detectar_infraccion(compra.producto.id)
+    compra = %{compra | infraccion: infraccion?}
+    {infraccion?, compra}
   end
 
   defp autorizar_pago(%Compra{} = compra) do
-    pago = Pagos.Server.autorizar_pago(compra.producto.id)
-    compra = %{compra | pago: %{compra.pago | autorizado: pago}}
-    {pago, compra}
+    pago_autorizado? = Pagos.Server.autorizar_pago(compra.producto.id)
+    compra = %{compra | pago: %{compra.pago | autorizado: pago_autorizado?}}
+    {pago_autorizado?, compra}
   end
 
   def confirmar_compra(%Compra{} = compra) do
